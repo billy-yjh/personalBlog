@@ -19,7 +19,6 @@ function insertTag(tag, ctime, utime, success) {
 function queryTag(tag, success) {
   var insertSql = "select * from tags where tag = ?;";
   var params = [tag];
-
   var connection = dbutil.createConnection();
   connection.connect();
   connection.query(insertSql, params, function (error, result) {

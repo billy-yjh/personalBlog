@@ -109,6 +109,39 @@ function queryHotBlog(size,success){
   connection.end();
 }
 
+//根据名字查博客
+function queryBlogByTitle(title,page, pageSize,success){
+  var querySql = "select * from blog where title like '%' ? '%' limit ?, ?;";
+  var params = [title, page * pageSize, pageSize];
+  var connection = dbutil.createConnection();
+  connection.connect();
+  connection.query(querySql,params,function(error,result){
+    if(error == null){
+      success(result)
+    }else{
+      console.log(error)
+    }
+  })
+  connection.end();
+}
+//根据名字查博客总数
+function queryBlogByTitleCount(title,success){
+  var querySql = "select count(1) as count from blog where title like '%'? '%' ;";
+  var params = [title];
+  var connection = dbutil.createConnection();
+  connection.connect();
+  connection.query(querySql,params,function(error,result){
+    if(error == null){
+      success(result)
+    }else{
+      console.log(error)
+    }
+  })
+  connection.end();
+}
+
+module.exports.queryBlogByTitleCount = queryBlogByTitleCount
+module.exports.queryBlogByTitle = queryBlogByTitle
 module.exports.insertBlog = insertBlog;
 module.exports.querytBlogByPage = querytBlogByPage;
 module.exports.querytBlogCount = querytBlogCount;

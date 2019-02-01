@@ -34,6 +34,11 @@ app.get('/queryNewComments',loader.get('/queryNewComments'));
 app.get('/queryByTag',loader.get('/queryByTag'));
 //根据tag查数量
 app.get('/queryByTagCount',loader.get('/queryByTagCount'));
+
+//根据tag来查详情
+app.get('/queryBlogByTitle',loader.get('/queryBlogByTitle'));
+//根据tag查数量
+app.get('/queryBlogByTitleCount',loader.get('/queryBlogByTitleCount'));
 app.listen(globalConfig.port, function(){
   console.log('服务器已启动');
 })

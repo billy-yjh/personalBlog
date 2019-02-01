@@ -27,7 +27,10 @@ var randomTags = new Vue({
     }).then(function (resp) {
       var result = [];
       for (var i = 0; i < resp.data.data.length; i++) {
-        result.push({text:resp.data.data[i].tag,link:"/?tag=" + resp.data.data[i].tag})
+        result.push({
+          text: resp.data.data[i].tag,
+          link: "/?tag=" + resp.data.data[i].tag
+        })
       }
       randomTags.tags = result;
     }).catch(function (resp) {
@@ -95,7 +98,7 @@ var newHot = new Vue({
 var newComment = new Vue({
   el: '#new_comment',
   data: {
-    commentList: [ {
+    commentList: [{
       name: '这里是用户名',
       date: '2018-10-10',
       comment: '哈叫啥的哈接收到卡的空间暗红色的'
@@ -162,5 +165,19 @@ var friendLink = new Vue({
   },
   created: function () {
 
+  }
+})
+
+var searchBar = new Vue({
+  el: "#search_bar",
+  data: {
+  },
+  methods: {
+    getValue: function () {
+      var val = document.getElementById("ipt_detail").value
+      window.location.href = window.location.href + '?title=' + val
+    }
+  },
+  created: function () {
   }
 })

@@ -6,6 +6,35 @@ var tagBlogMappingDao = require('../dao/TagBlogMappingDao.js');
 var url = require('url');
 var path = new Map();
 
+//根据名字查博客总数
+function queryBlogByTitleCount(request,response){
+  var params = url.parse(request.url,true).query;
+  blogDao.queryBlogByTitleCount(params.title,function(result){
+    response.writeHead(200);
+    response.write(respUtil.writeResult("success",'请求成功',result));
+    response.end();
+  })
+}
+path.set("/queryBlogByTitleCount",queryBlogByTitleCount)
+
+//根据名字查博客
+function queryBlogByTitle(request,response){
+  var params = url.parse(request.url,true).query;
+  blogDao.queryBlogByTitle(params.title,parseInt(params.page), parseInt(params.pageSize),function(result){
+    // console.log(result)
+    for(var i = 0; i < result.length; i++){
+      result[i].content = result[i].content.replace(/<img[\w\W]*>/,"");
+      result[i].content = result[i].content.replace(/<[\w\W]{1,5}>/,"");
+    }
+    response.writeHead(200);
+    response.write(respUtil.writeResult("success",'请求成功',result));
+    response.end();
+  })
+}
+
+path.set('/queryBlogByTitle',queryBlogByTitle)
+
+
 //查询全部博客 (按热度查)
 function queryHotBlog(request,response){
   blogDao.queryHotBlog(5,function(result){

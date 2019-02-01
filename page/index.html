@@ -30,9 +30,9 @@
           <a href="./guestbook.html">留言</a>
         </li>
       </ul>
-      <div class="search_bar">
-        <input type="text" placeholder="输入关键词查找">
-        <button>搜索</button>
+      <div class="search_bar" id="search_bar">
+        <input id="ipt_detail" type="text" placeholder="输入关键词查找">
+        <button  @click="getValue">搜索</button>
       </div>
     </div>
   </header>
