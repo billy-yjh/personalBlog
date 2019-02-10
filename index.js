@@ -2,7 +2,7 @@ var express = require('express');
 var globalConfig = require('./config.js');
 var loader = require('./loader.js');
 var app = new express();
-
+//提供对静态资源文件的服务   就是放HTML css js 文件的目录
 app.use(express.static("./page/"));
 
 app.post("/editEveryDay",loader.get('/editEveryDay'));

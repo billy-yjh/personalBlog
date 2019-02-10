@@ -94,7 +94,7 @@ function queryBlogByPage(request,response){
   })
 }
 path.set('/queryBlogByPage',queryBlogByPage)
-
+//添加博客
 function editBlog(request, response) {
   //获取地址后面的参数 并把参数解析成对象
   var params = url.parse(request.url, true).query;
